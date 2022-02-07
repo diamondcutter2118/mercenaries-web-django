@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang ="en">
+    <head>
+        <title>Home</title>
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+            body {
+                margin : 0;
+                background: grey ;
+
+            }
+            .nav{
+                border: 1px solid black;
+                border-collapse: collapse;
+                width : 100%;
+                height : 70px;
+                background-color: black;
+            }
+            .nav th {
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 2px;
+                color : white;
+            }
+            .logo{
+                width : 60px;
+                height: 60px;
+            }
+            .header-text{
+                color: white; 
+                font-family: arial   ;
+            }
+            .newsfeed {
+                width : 1000px;
+                margin : auto;
+                background: #f2f2f2 ;
+                border : 1px solid black;
+                height : 300px;
+                overflow :auto;
+                
+            }
+            .offer {
+                padding : 5px;
+                border : 1px #ccc ;
+                float : left;
+                width : 300px;
+            }
+            .offer-image{
+                width :100px;
+                height :100px;
+            }
+            .games-container {
+                width: 1000px;
+                height: 600px;
+                border : 1px solid black;
+                background : #f2f2f2;
+                margin: auto;
+                overflow:auto;
+            }
+            .games{
+                padding: 5px;
+                border: 1px #ccc;
+                float:left;
+                width : 300px;
+
+            }
+            .game-image{
+                width: 100px;
+                height:100px;
+            }
+        </style>
+    </head>
+    <body>
+        <table class ="nav" >
+            <thead>
+                <th><img class ="logo" src ="{% static "images\Mercenaries logo.jpg" %}" alt="logo"></th>
+                <th><a class ="header-text" href = "{% url 'home:login' %}">Login</a></th>
+            </thead>
+        </table>
+        
+        <div class =" newsfeed ">
+            Newsfeed
+            <br>
+            <br>
+            <div class ="offer" > 
+                <img class ="offer-image" src ="{% static "images\jinx.jpg" %}"><a class ="offer" href = "{% url 'offers:offer1' %}">Offer1</a>
+                    <div class ="desc" >Description offer 1</div>
+            </div>
+            <div class ="offer" > 
+                <img class ="offer-image" src ="{% static "images\vi.jpg" %}"><a class ="offer" href ="{% url 'offers:offer2' %}">Offer2</a>
+                    <div class ="desc" >Description offer 2</div>
+            </div>
+            <div class ="offer" > 
+                <img class ="offer-image" src ="{% static "images\jayce.jpeg" %}"><a class ="offer" href ="{% url 'offers:offer3' %}">Offer3</a>
+                    <div class ="desc" >Description offer 3</div>
+            </div>
+        </div>
+        <div class ="games-container">
+            Games
+            <br>
+            <br>
+            <div class ="games">
+                <img class ="game-image" src ="{% static "images\Decentraland.jpg" %}"><a class ="games" href ="{% url 'games:decentraland' %}"> Decentraland</a>
+            </div>
+            <div class ="games">
+                <img class ="game-image" src ="{% static "images\axie-infinity.jpg" %}"><a class ="games" href ="{% url 'games:axieinfinity' %}"> Axie Infinity</a>
+            </div >
+            <div>
+                <img class ="game-image" src ="{% static "images\Alien-world.png" %}"><a class ="games" href ="{% url 'games:alienworld' %}"> Alien World</a>
+            </div>
+                  
+    </body>
+</html>
+
+                
+                
+        

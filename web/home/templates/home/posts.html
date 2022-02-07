@@ -1,0 +1,95 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang ="en">
+    <head>
+        <title>Posting</title>
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+            body {
+                margin : 0;
+                background: grey ;
+
+            }
+            .nav{
+                border: 1px solid black;
+                border-collapse: collapse;
+                width : 100%;
+                height : 70px;
+                background-color: black;
+            }
+            .nav th {
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 2px;
+                color : white;
+            }
+            .logo{
+                width : 60px;
+                height: 60px;
+            }
+            .header-text{
+                color: white; 
+                font-family: arial   ;
+            }
+            .container {
+                width : 1000px;
+                margin : auto;
+                background: #f2f2f2 ;
+                border : 1px solid black;
+                height : 600px;
+                overflow :auto;
+            }
+        </style>
+    </head>
+    <body>
+        <table class ="nav" >
+            <thead>
+                <th><img class ="logo" src ="{% static "images\Mercenaries logo.jpg" %}" alt="logo"></th>
+                <th><a class ="header-text" href = "{% url 'home:chat' %}" >Chat</a></th>
+                <th><a class ="header-text" href = "{% url 'home:posting' %}" >Posting</a></th>
+                <th><a class ="header-text" href = "{% url 'home:loged_in_index' %}" >Home</a></th>
+            </thead>
+        </table>
+        <div class ="container">
+            <h1>Games:</h1>
+                <ul>
+                    {% for game in game %}
+                        <li>{{ game }}</li>
+                    {% endfor %}
+                </ul>
+            <h1>Required time:</h1>
+                <ul>
+                    {% for required_time in required_time %}
+                        <li>{{ required_time }}</li>
+                     {% endfor %}
+                </ul>
+            <h1>Required rank:</h1>
+                <ul>
+                    {% for required_rank in required_rank %}
+                        <li>{{ required_rank }}</li>
+                    {% endfor %}
+                </ul>
+            <h1>Reward ingame:</h1>
+                <ul>
+                    {% for reward_ingame in reward_ingame %}
+                        <li>{{ reward_ingame }}</li>
+                    {% endfor %}
+                </ul>
+            <h1>Salary:</h1>
+                <ul>
+                    {% for salary in salary %}
+                        <li>{{ salary }}</li>
+                    {% endfor %}
+                </ul>
+            <h1>Description:</h1>
+                <ul>
+                    {% for description in description %}
+                        <li>{{ description }}</li>
+                    {% endfor %}
+                </ul>
+        <a href="{% url 'home:posting' %}">Change your post</a>
+        </div>
+    </body>

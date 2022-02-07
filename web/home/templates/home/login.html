@@ -1,0 +1,90 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang ="en">
+    <head>
+        <title>Home </title>
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+            body {
+                margin : 0;
+                background: grey ;
+
+            }
+            .nav{
+                border: 1px solid black;
+                border-collapse: collapse;
+                width : 100%;
+                height : 70px;
+                background-color: black;
+            }
+            .nav th {
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 2px;
+                color : white;
+            }
+            .logo{
+                width : 60px;
+                height: 60px;
+            }
+            .header-text{
+                color: white; 
+                font-family: arial   ;
+            }
+            .container {
+                width : 1000px;
+                margin : auto;
+                background: #f2f2f2 ;
+                border : 1px solid black;
+                height : 600px;
+                overflow :auto; 
+            }
+            .login_box{
+                width : 330px;
+                margin: 20px 333px ;
+                background: #f2f2f2 ;
+                border : 1px solid black;
+                height: 400px;
+
+            }
+            
+        </style>
+    </head>
+    <body>
+        <table class ="nav" >
+            <thead>
+                <th><img class ="logo" src ="{% static "images\Mercenaries logo.jpg" %}" alt="logo"></th>
+                <th><a class ="header-text" href = "{% url 'home:chat' %}" >Chat</a></th>
+                <th><a class ="header-text" href = "{% url 'home:posting' %}" >Posting</a></th>
+                <th><a class ="header-text" href = "{% url 'home:index' %}" >Home</a></th>
+            </thead>
+        </table>
+        
+        <div class =" container ">
+            <div class ="login_box">
+                Login
+                {% if message %}
+                    <div>{{ message }}</div>
+                {% endif %}
+                <form action="{% url 'home:login' %}" method="post">
+                    {% csrf_token %}
+                    <div class ="form-group">
+                        {{login_form.username}}
+                    </div>
+                    <div class ="form-group">
+                        {{login_form.password}}
+                    </div>
+                    <input type ="submit">
+                Don't have an account yet? Let's Signup!
+                <a href ="{% url 'home:signup' %}">Signup</a>
+                </form>
+            </div>
+        </div>    
+    </body>
+</html>
+
+
