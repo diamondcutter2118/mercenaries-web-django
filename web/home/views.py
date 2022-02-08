@@ -26,6 +26,7 @@ class RequirementForm(forms.Form):
     required_time = forms.CharField(widget =forms.TextInput(attrs ={'placeholder':'Required Time','size' : 60 ,'style':'height:40px;' ,'class':'form-control'}))
     required_rank = forms.CharField(widget =forms.TextInput(attrs ={'placeholder':'Required Rank','size' : 60 ,'style':'height:40px;' ,'class':'form-control'}))
     reward_ingame = forms.CharField(widget =forms.TextInput(attrs ={'placeholder':'Reward Ingame','size' : 60 ,'style':'height:40px;' ,'class':'form-control'}))
+    number_of_recruit_player = forms.CharField(widget =forms.NumberInput(attrs ={'placeholder':'Number of Recruit Player','size' : 60 ,'style':'height:40px;' ,'class':'form-control'}))
     salary = forms.CharField(widget =forms.TextInput(attrs ={'placeholder':'Salary','size' : 60 ,'style':'height:40px;' ,'class':'form-control'}))
     description = forms.CharField(widget =forms.TextInput(attrs ={'placeholder':'Description', 'size' : 60 ,'style':'height:100px;' ,'class':'form-control'}))
     
