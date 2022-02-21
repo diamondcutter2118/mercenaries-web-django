@@ -1,0 +1,38 @@
+.newsfeed {
+    width : 1000px;
+    margin : auto;
+    background: #f2f2f2 ;
+    border : 1px solid black;
+    height : 300px;
+    overflow :auto;
+    
+}
+.offer {
+    padding : 5px;
+    border : 1px #ccc ;
+    float : left;
+    width : 300px;
+}
+.offer-image{
+    width :100px;
+    height :100px;
+}
+.games-container {
+    width: 1000px;
+    height: 600px;
+    border : 1px solid black;
+    background : #f2f2f2;
+    margin: auto;
+    overflow:auto;
+}
+.games{
+    padding: 5px;
+    border: 1px #ccc;
+    float:left;
+    width : 300px;
+
+}
+.game-image{
+    width: 100px;
+    height:100px;
+}

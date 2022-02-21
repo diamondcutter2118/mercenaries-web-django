@@ -1,0 +1,16 @@
+.container {
+    width : 1000px;
+    margin : auto;
+    background: #f2f2f2 ;
+    border : 1px solid black;
+    height : 600px;
+    overflow :auto; 
+}
+.signup_box{
+    width : 330px;
+    margin: 20px 333px ;
+    background: #f2f2f2 ;
+    border : 1px solid black;
+    height: 400px;
+
+}

@@ -1,0 +1,16 @@
+.container {
+    width : 1000px;
+    margin : auto;
+    background: #f2f2f2 ;
+    border : 1px solid black;
+    height : 600px;
+    overflow :auto;
+    }
+.form-group{
+    margin: 10px 200px;
+            
+    }
+.submit{
+    width :1000px;
+    margin : 10px 200px;
+    }

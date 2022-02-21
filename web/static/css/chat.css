@@ -1,0 +1,40 @@
+.chat-display{
+    max-width: 1200px;
+    height: 580px;
+    margin: auto;
+    border: 1px solid black;
+
+}
+.rec-left {
+    margin:0;
+    padding:0;
+    height :100%;
+    width: 350px;
+    background-color: white;
+    border: 1px solid black;
+}
+.rec-right {
+    margin:0;
+    padding:0;
+    height :100%;
+    width: 650px;
+    background-color: white;
+    border: 1px solid black;
+}
+.chat-option{
+    height: 60px;
+    width: 100%;
+    position: relative;
+    bottom: 260px;
+    margin: 1px;
+    background-color: #594848;
+    padding:0;
+    margin:0;
+}
+.chat-bar{
+    color:white;
+    font-family: arial; 
+    
+    margin:0;
+    padding:0;
+}
