@@ -49,7 +49,7 @@
             <thead>
                 <th><img class ="logo" src ="{% static "images\Mercenaries logo.jpg" %}" alt="logo"></th>
                 <th><a class ="header-text" href = "{% url 'home:chat' %}" >Chat</a></th>
-                <th><a class ="header-text" href = "{% url 'home:posting' %}" >Posting</a></th>
+                <th><a class ="header-text" href = "{% url 'home:posting'  %}" >Posting</a></th>
                 <th><a class ="header-text" href = "{% url 'home:loged_in_index' %}" >Home</a></th>
             </thead>
         </table>
@@ -90,6 +90,6 @@
                         <li>{{ description }}</li>
                     {% endfor %}
                 </ul>
-        <a href="{% url 'home:posting' %}">Change your post</a>
+        <a href="{% url 'home:posting'  %}">Change your post</a>
         </div>
     </body>

@@ -3,31 +3,14 @@ from django.http import HttpResponse
 from django import forms
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from django.forms import TextInput,ModelForm,NumberInput,EmailInput,PasswordInput
-from .models import User , Offer
+from django.forms import TextInput,ModelForm,NumberInput,EmailInput,PasswordInput, inlineformset_factory
+from pkg_resources import Requirement
+from .models import User , Offer, Game
 from django.contrib.auth import authenticate, login , logout
+from .forms import OfferForm,LoginForm,SignupForm
+from django.forms import inlineformset_factory
 # Create your views here.
 app_name = "home"
-
-class LoginForm(forms.Form):
-    username =forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Username','class':'form-control'}))
-    password =forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password','class':'form-control'}))
-
-class SignupForm(forms.Form):
-    first_name =forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'First name','class':'form-control'}))
-    last_name =forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Last name','class':'form-control'}))
-    username =forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Username','class':'form-control'}))
-    email =forms.CharField(widget=forms.EmailInput(attrs={'placeholder': 'Email','class':'form-control'}))
-    password =forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password','class':'form-control'}))
-    confirm_password =forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password','class':'form-control'}))
-
-class RequirementForm(forms.Form):
-    game = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Game Name',  'style':'height:40px;' ,'size' : 60 , 'class':'form-control'}))
-    required_time = forms.CharField(widget =forms.TextInput(attrs ={'placeholder':'Required Time','size' : 60 ,'style':'height:40px;' ,'class':'form-control'}))
-    required_rank = forms.CharField(widget =forms.TextInput(attrs ={'placeholder':'Required Rank','size' : 60 ,'style':'height:40px;' ,'class':'form-control'}))
-    reward_ingame = forms.CharField(widget =forms.TextInput(attrs ={'placeholder':'Reward Ingame','size' : 60 ,'style':'height:40px;' ,'class':'form-control'}))
-    salary = forms.CharField(widget =forms.TextInput(attrs ={'placeholder':'Salary','size' : 60 ,'style':'height:40px;' ,'class':'form-control'}))
-    description = forms.CharField(widget =forms.TextInput(attrs ={'placeholder':'Description', 'size' : 60 ,'style':'height:100px;' ,'class':'form-control'}))
     
 def login_view (request):
     if request.method == "POST":
@@ -90,50 +73,17 @@ def posts(request):
         "description": request.session["description"],
     }) 
 
-def posting(request):
-    if request.method == "POST":
-
-        form = RequirementForm(request.POST)
-
+def posting(request):  
+    form = OfferForm()
+    if request.method =="POST":
+        form = OfferForm(request.POST)
         if form.is_valid():
-            # Should make a loop here
-            game_form = form.cleaned_data["game"]
-            required_time_form = form.cleaned_data["required_time"]
-            required_rank_form = form.cleaned_data["required_rank"]
-            reward_ingame_form = form.cleaned_data["reward_ingame"]
-            salary_form = form.cleaned_data["salary"]
-            description_form = form.cleaned_data["description"]
-            
-            request.session["game"] += [game_form]
-            request.session["required_time"] += [required_time_form]
-            request.session["required_rank"] += [required_rank_form]
-            request.session["reward_ingame"] += [reward_ingame_form]
-            request.session["salary"] += [salary_form]
-            request.session["description"] += [description_form]
+            form.save()
 
-            game_model = request.POST["game"]
-            required_time_model = request.POST["required_time"]
-            required_rank_model = request.POST["required_rank"]
-            reward_ingame_model = request.POST["reward_ingame"]
-            salary_model = request.POST["salary"]
-            description_model = request.POST["description"]
-
-            # Should make a loop here
-            requirement_data = Offer(game = game_model, required_time =required_time_model, required_rank = required_rank_model,reward_ingame =reward_ingame_model,salary=salary_model, description = description_model)
-            requirement_data.save()
-
-            return HttpResponseRedirect(reverse("home:posts"))
-        else:
-
-            return render(request, "home/posting.html", {
-                "form": form
-            })
-
-    return render(request, "home/posting.html", {
-        "form": RequirementForm()
+    return render (request, "home/posting.html",{
+        "form":form
     })
-
-
+    
 def newsfeed (request):
     return render (request, "home/newsfeed.html")
 
@@ -148,7 +98,6 @@ def index(request):
 
 def loged_in_index(request):
      return render (request, "home/loged_in_index.html")
-
 
 
 

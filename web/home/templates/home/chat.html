@@ -1,105 +1,29 @@
+{% extends 'home/main.html' %}
 
-{% load static%}
+{% load static %}
 
-<!DOCTYPE html>
-<html lang ="en">
-    <head>
-        <title>Home</title>
-    </head>
-    <style>
-        *{
-                box-sizing: border-box;
-        }
-        body {
-            margin : 0;
-            background: grey ;
-        }
-        .nav {
-            border: 1px solid black;
-            border-collapse: collapse;
-            width : 100%;
-            height : 70px;             
-            background-color: black;
-        }
-        .nav th {
-            border: 1px solid black;
-            border-collapse: collapse;
-            padding: 2px;
-            color : white;
-            font-family: arial;
-        }
-        .logo {
-            width : 60px;
-            height: 60px;
-        }
-        .header-text{
-            color: white; 
-            font-family: arial;
-        }
-        .chat-display{
-            max-width: 1200px;
-            height: 580px;
-            margin: auto;
-        }
-        .rec-left {
-            margin:0;
-            padding:0;
-            height :100%;
-            width: 350px;
-            background-color: white;
-        }
-        .rec-right {
-            margin:0;
-            padding:0;
-            height :100%;
-            width: 650px;
-            background-color: white;
-        }
-        .chat-option{
-            height: 60px;
-            width: 100%;
-            position: relative;
-            bottom: 260px;
-            margin: 1px;
-            background-color: #594848;
-            padding:0;
-            margin:0;
-        }
-        .chat-bar{
-            color:white;
-            font-family: arial; 
-            
-            margin:0;
-            padding:0;
-        }
-    </style>
-    <body>
-        <div>
-            <table class ="nav" > 
-                <thead>
-                    <th><img class ="logo" src ="{% static "images\Mercenaries logo.jpg" %}" alt="logo"></th>
-                    <th><a class ="header-text" href = "{% url 'home:chat' %}" >Chat</a></th>
-                    <th><a class ="header-text" href = "{% url 'home:posting' %}" >Posting</a></th>
-                    <th><a class ="header-text" href = "{% url 'home:loged_in_index' %}" >Home</a></th>
-                </thead>
-            </table>
-        </div>
-        <div>
-            <table class ="chat-display">
-                <thead>
-                    <th class ="rec-left">
-                        <table class ="chat-option" >
-                            <thead>
-                                <th class ="chat-bar">All</th>
-                                <th class ="chat-bar">Posted</th>
-                                <th class ="chat-bar">Received </th>
-                            </thead>
-                        </table>
-                    </th>
-                    <th class ="rec-right"> </th>
-                </thead>
-            </table>
-        </div>
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/chat.css' %}">
+
+<div>
+    <table class ="chat-display">
+        <thead>
+            <th class ="rec-left">
+                <table class ="chat-option" >
+                    <thead>
+                        <th class ="chat-bar">All</th>
+                        <th class ="chat-bar">Posted</th>
+                        <th class ="chat-bar">Received </th>
+                    </thead>
+                </table>
+            </th>
+            <th class ="rec-right"> </th>
+        </thead>
+    </table>
+</div>
+
+{% endblock %}
+
+
         
-    </body>
-</html>
