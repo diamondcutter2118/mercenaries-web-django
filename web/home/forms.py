@@ -1,26 +1,26 @@
-from django.forms import EmailInput, ModelForm,TextInput,PasswordInput,NumberInput
+from django.forms import EmailInput, ModelForm,TextInput,PasswordInput,NumberInput,FileInput
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import Offer
+from .models import Offer,Customer
 
 class OfferForm(forms.ModelForm):
     class Meta:
         model = Offer
         exclude =['user','id','created_by']
         widgets ={
-            'game' : TextInput(attrs={'placeholder': 'Game Name',  'style':'height:40px;' ,'size' : 60 , 'class':'form-control'}),
-            'required_time' : TextInput(attrs={'placeholder': 'Required Time',  'style':'height:40px;' ,'size' : 60 , 'class':'form-control'}),
-            'required_rank' : TextInput(attrs={'placeholder': 'Required Rank',  'style':'height:40px;' ,'size' : 60 , 'class':'form-control'}),
-            'reward_ingame' : TextInput(attrs={'placeholder': 'Reward Ingame',  'style':'height:40px;' ,'size' : 60 , 'class':'form-control'}),
-            'number_of_recruit_player' : NumberInput(attrs={'placeholder': 'Number of Recruit Player',  'style':'height:40px;' ,'size' : 60 , 'class':'form-control'}),
-            'salary' : TextInput(attrs={'placeholder': 'Salary',  'style':'height:40px;' ,'size' : 60 , 'class':'form-control'}),
-            'description' : TextInput(attrs={'placeholder': 'Description',  'style':'height:100px;' ,'size' : 60 , 'class':'form-control'}),
+            'game' : TextInput(attrs={'placeholder': 'Game Name', 'class':'form-control'}),
+            'required_time' : TextInput(attrs={'placeholder': 'Required Time',  'class':'form-control'}),
+            'required_rank' : TextInput(attrs={'placeholder': 'Required Rank',  'class':'form-control'}),
+            'reward_ingame' : TextInput(attrs={'placeholder': 'Reward Ingame', 'class':'form-control'}),
+            'number_of_recruit_player' : NumberInput(attrs={'placeholder': 'Number of Recruit Player' , 'class':'form-control'}),
+            'salary' : TextInput(attrs={'placeholder': 'Salary', 'class':'form-control'}),
+            'description' : TextInput(attrs={'placeholder': 'Description' , 'class':'form-control'}),
         }
 
 class LoginForm(forms.ModelForm):
     class Meta:
-        model = User
+        model = Customer
         fields =['username','password']
         widgets ={
                 'username' : TextInput(attrs={'placeholder': 'Username', 'class':'form-control'}),
@@ -28,13 +28,11 @@ class LoginForm(forms.ModelForm):
 
         }
 
-class SignupForm(forms.ModelForm):
+class CreateUserForm(ModelForm):
     class Meta:
-        model = User
-        exclude =['id',]
+        model = Customer
+        fields =['username','email','password','confirm_password']
         widgets ={
-                'first_name' : TextInput(attrs={'placeholder': 'First name', 'class':'form-control'}),
-                'last_name' : TextInput(attrs={'placeholder': 'Last name', 'class':'form-control'}),
                 'username' : TextInput(attrs={'placeholder': 'Username', 'class':'form-control'}),
                 'email' : EmailInput(attrs={'placeholder': 'Email', 'class':'form-control'}),
                 'password' : PasswordInput(attrs={'placeholder': 'Password', 'class':'form-control'}),
@@ -42,3 +40,13 @@ class SignupForm(forms.ModelForm):
 
         }
     
+class CustomerForm (ModelForm):
+    class Meta:
+        model = Customer
+        exclude=['user','id','confirm_password','date_created']
+        widget ={
+                'username' : TextInput(attrs={'placeholder': 'Username', 'class':'form-control'}),
+                'email' : EmailInput(attrs={'placeholder': 'Email', 'class':'form-control'}),
+                'password' : PasswordInput(attrs={'placeholder': 'Password', 'class':'form-control'}),
+                'profile_pic' : FileInput(attrs={'placeholder': 'Image', 'class':'form-control'}),
+        }

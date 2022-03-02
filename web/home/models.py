@@ -1,18 +1,21 @@
+from email.policy import default
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
-class User(models.Model):
+class Customer(models.Model):
     id = models.BigAutoField(primary_key=True)
-    first_name = models.CharField(max_length = 10)
-    last_name = models.CharField(max_length = 10)
+    user = models.OneToOneField(User, null = True, blank = True, on_delete=models.CASCADE)
     username = models.CharField(max_length = 10)
     email = models.CharField(max_length = 20)
     password = models.CharField(max_length = 20)
     confirm_password = models.CharField(max_length = 20,null = True)
+    profile_pic = models.ImageField(default="profilepic1.jpg",null=True,blank = True)
+    date_created = models.DateTimeField(auto_now_add=True, null = True)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.username}"
 
 class Tag(models.Model):
     name = models.CharField(max_length=30, null=True)

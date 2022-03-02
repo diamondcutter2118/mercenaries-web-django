@@ -1,10 +1,15 @@
 {% load static %}
 
-<table class ="nav" >
-    <thead>
-        <th><img class ="logo" src ="{% static "images\Mercenaries logo.jpg" %}" alt="logo"></th>
-        <th><a class ="header-text" href = "{% url 'home:chat' %}" >Chat</a></th>
-        <th><a class ="header-text" href = "{% url 'home:posting' %}" >Posting</a></th>
-        <th><a class ="header-text" href = "{% url 'home:loged_in_index' %}" >Home</a></th>
-    </thead>
-</table>
+<nav id="mainNav" class ="navbar text-uppercase bg-secondary fixed-top">
+    <div class ="container">
+        <a class="navbar-brand" href = "{% url 'home:landing' %}" >Mercenaries</a>
+        <div class="nav-item" >
+            <ul class = "nav" >
+                <li ><a  href = "{% url 'home:chat' %}" >Chat</a></li>
+                <li ><a  href = "{% url 'home:posting' %}" >Posting</a></li>
+                <!-- Make  this a dropdown -->
+                <li ><a  href = "{% url 'home:userpage' %}" >Userprofile</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

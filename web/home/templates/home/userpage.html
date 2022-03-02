@@ -1,0 +1,54 @@
+{% extends 'home/main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="user-profile bg-primary masthead">
+    <div class="container">
+        <div class="row">
+            <!--Account image section-->
+            <div class="card image-card">
+                <div class="container title-container text-center text-secondary ">
+                    <div class="title">
+                        <p>Your Userprofile</p>
+                    </div>
+                </div>
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                </div>
+                <br>
+                <div class="account-image-image">
+                <img class="profile-pic" src="{{request.user.customer.profile_pic.url}}">
+                </div>
+                <br>
+            </div>
+            <!--Account detail section-->
+            <div class="card detail-card">
+                <div class="container detail-container text-center text-secondary">
+                    <p>Your Information</p>
+                </div>
+                <!--fix later:cant load user info-->
+                <form method="POST" action="{% url 'home:userpage' %}" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                <div class="form-group">
+                    {{form.username}}
+                </div>
+                <div class="form-group">
+                    {{form.email}}
+                </div>
+                <div class="form-group">
+                    {{form.password}}
+                </div>
+                <div class="form-group">
+                    {{form.profile_pic}}
+                </div>
+                <div class="user-detail-submit text-center">
+                    <input class="btn btn-primary" type="submit" value="Update Information">
+                </div>    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

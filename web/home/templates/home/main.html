@@ -3,16 +3,24 @@
 <!DOCTYPE html>
 <html lang ="en">
     <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
         <title>Home</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://kit.fontawesome.com/58f3426131.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-        
     </head>
     <body>
-        {% include 'home/navbar.html' %}
 
+        {% include 'home/navbar.html' %}
+                            
         {% block content %}
+                            
+        {% endblock %}   
         
-        {% endblock %}
+        {% include 'home/footer.html' %}
     </body>     
 </html>

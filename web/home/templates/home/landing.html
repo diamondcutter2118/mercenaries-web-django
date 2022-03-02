@@ -1,0 +1,194 @@
+{% extends 'home/main.html' %}
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/landing.css' %}">
+
+<!--Header-->
+<header class ="bg-white text-center masthead">
+    <div class="container align-items-center ">
+        <img class="soldier-logo" src="{% static "images\Soldier_icon.jpg" %}">
+        <div class ="divider-custom ">
+            <div class="divider-custom-line "></div>
+        </div>
+        <p class="header-text ">Mercenaries is a place to connect play-to-earn account owners with available gamers.So that the game account owners can save time while the gamers can make money </p>
+    </div>               
+</header>
+<!--Game section-->
+<section class ="game-section page-section bg-primary ">
+    <div class ="container margin-auto">
+        <h2 class="text-center text-uppercase text-white ">Featured games</h2>
+        <div class ="divider-custom ">
+            <div class="divider-custom-line divider-custom-white "></div>
+        </div>
+        <!-- Game Grid Items-->
+        <div class ="row justify-content-center ">
+            <!--Game 1-->
+            <div class="item ">
+                <img class ="game-image" src ="{% static "images\Decentraland.jpg" %}">
+            </div>
+            <!--Game 2-->
+            <div class="item ">
+                <img class ="game-image" src ="{% static "images\axie-infinity.jpg" %}">
+            </div>
+            <!--Game 3-->
+            <div class="item ">
+                <img class ="game-image" src ="{% static "images\Alien-world.png" %}">
+            </div>
+        </div>
+    </div>
+</section>
+<!--Recent recruit section-->
+<section class ="recruit-section page-section bg-white ">
+    <div class ="container margin-auto">
+        <h2 class="text-center text-uppercase text-secondary ">Recent recruitments</h2>
+        <div class ="divider-custom ">
+            <div class="divider-custom-line"></div>
+        </div>
+        <div class="offers-container row justify-content-center">
+            <!--Offer 1-->
+            <div class="item">
+                <div class="recruit-item bg-white">
+                    <div class="recruit-item-header">
+                        <img class="recruit-item-img" src="{% static "images\jinx.jpg" %}">
+                        <div class="recruit-title">
+                            <!--finish the link and pages-->
+                            <link ><a class="text-dark offer-link " href=#>Offer 1</a>
+                            <br>
+                            <link ><a class="text-muted game-link " href=#>Game 1</a>
+                        </div>
+                    </div>
+            
+                    <div class="recruit-item-footer">
+                        <div class ="recruit-salary-container">
+                            <p class="recruit-salary">Salary</p>
+                        </div>
+                        <div class ="recruit-server-container">
+                            <p class="recruit-server">Server</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Offer 2-->
+            <div class="item">
+                <div class="recruit-item bg-white">
+                    <div class="recruit-item-header">
+                        <img class="recruit-item-img" src="{% static "images\jayce.jpeg" %}">
+                        <div class="recruit-title">
+                            <!--finish the link and pages-->
+                            <link ><a class="text-dark offer-link " href=#>Offer 2</a>
+                            <br>
+                            <link ><a class="text-muted game-link " href=#>Game 2</a>
+                        </div>
+                    </div>
+            
+                    <div class="recruit-item-footer">
+                        <div class ="recruit-salary-container">
+                            <p class="recruit-salary">Salary</p>
+                        </div>
+                        <div class ="recruit-server-container">
+                            <p class="recruit-server">Server</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Offer 3-->
+            <div class="item">
+                <div class="recruit-item bg-white">
+                    <div class="recruit-item-header">
+                        <img class="recruit-item-img" src="{% static "images\vi.jpg" %}">
+                        <div class="recruit-title">
+                            <!--finish the link and pages-->
+                            <link ><a class="text-dark offer-link " href=#>Offer 3</a>
+                            <br>
+                            <link ><a class="text-muted game-link " href=#>Game 3</a>
+                        </div>
+                    </div>
+            
+                    <div class="recruit-item-footer">
+                        <div class ="recruit-salary-container">
+                            <p class="recruit-salary">Salary</p>
+                        </div>
+                        <div class ="recruit-server-container">
+                            <p class="recruit-server">Server</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Offer 4-->
+            <div class="item">
+                <div class="recruit-item bg-white">
+                    <div class="recruit-item-header">
+                        <img class="recruit-item-img" src="{% static "images\jinx.jpg" %}">
+                        <div class="recruit-title">
+                            <!--finish the link and pages-->
+                            <link ><a class="text-dark offer-link " href=#>Offer 4</a>
+                            <br>
+                            <link ><a class="text-muted game-link " href=#>Game 4</a>
+                        </div>
+                    </div>
+            
+                    <div class="recruit-item-footer">
+                        <div class ="recruit-salary-container">
+                            <p class="recruit-salary">Salary</p>
+                        </div>
+                        <div class ="recruit-server-container">
+                            <p class="recruit-server">Server</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Offer 5-->
+            <div class="item">
+                <div class="recruit-item bg-white">
+                    <div class="recruit-item-header">
+                        <img class="recruit-item-img" src="{% static "images\jayce.jpeg" %}">
+                        <div class="recruit-title">
+                            <!--finish the link and pages-->
+                            <link ><a class="text-dark offer-link " href=#>Offer 5</a>
+                            <br>
+                            <link ><a class="text-muted game-link " href=#>Game 5</a>
+                        </div>
+                    </div>
+            
+                    <div class="recruit-item-footer">
+                        <div class ="recruit-salary-container">
+                            <p class="recruit-salary">Salary</p>
+                        </div>
+                        <div class ="recruit-server-container">
+                            <p class="recruit-server">Server</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Offer 6-->
+            <div class="item">
+                <div class="recruit-item bg-white">
+                    <div class="recruit-item-header">
+                        <img class="recruit-item-img" src="{% static "images\vi.jpg" %}">
+                        <div class="recruit-title">
+                            <!--finish the link and pages-->
+                            <link ><a class="text-dark offer-link " href=#>Offer 6</a>
+                            <br>
+                            <link ><a class="text-muted game-link " href=#>Game 6</a>
+                        </div>
+                    </div>
+            
+                    <div class="recruit-item-footer">
+                        <div class ="recruit-salary-container">
+                            <p class="recruit-salary">Salary</p>
+                        </div>
+                        <div class ="recruit-server-container">
+                            <p class="recruit-server">Server</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+            
+                  

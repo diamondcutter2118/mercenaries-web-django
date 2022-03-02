@@ -3,48 +3,48 @@
 {% load static %}
 
 {% block content %}
+<div class="posting masthead bg-white">
+    <div class="container">
+        <div class="posting-card text-secondary ">
+            <div class="form-title">
+                <h1 >Requirement</h1>
+            </div>
+            <form class="requirement-form" action="{% url 'home:posting'  %}" method="POST">
+                {% csrf_token %}
+            <div class ="form-group">
+                {{ form.game}}
+            </div>
+            <br>
+            <div class ="form-group">
+                {{ form.required_time}}
+            </div>
+            <br>
+            <div class ="form-group">
+                {{ form.required_rank}}        
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/posting.css' %}">
-
-<div class ="container">
-    <h1 style = "margin: 10px 100px" >Requirement</h1>
-    <form action="{% url 'home:posting'  %}" method="POST">
-        {% csrf_token %}
-        <div class ="form-group">
-            {{ form.game}}
+            </div>
+            <br>
+            <div class ="form-group">
+                {{ form.reward_ingame}}
+            </div>
+            <br>                    
+            <div class ="form-group">
+                {{ form.number_of_recruit_player}}
+            </div>
+            <br>
+            <div class ="form-group">
+                {{ form.salary}}
+            </div>
+            <br>
+            <div class ="form-group">
+                {{ form.description}}
+            </div>
+            <div class="requirement-submit text-center ">
+                <input class ="btn btn-danger" type="submit" value="Submit" >                    
+            </div>                
+            </form>
         </div>
-        <br>
-        <div class ="form-group">
-            {{ form.required_time}}
-        </div>
-        <br>
-        <div class ="form-group">
-            {{ form.required_rank}}                    
-        </div>
-        <br>
-        <div class ="form-group">
-            {{ form.reward_ingame}}
-        </div>
-        <br>                    
-        <div class ="form-group">
-            {{ form.number_of_recruit_player}}
-        </div>
-        <br>
-        <div class ="form-group">
-            {{ form.salary}}
-        </div>
-        <br>
-        <div class ="form-group">
-            {{ form.description}}
-        </div>
-        <br>
-        <div class="submit">
-            <a class ="btn btn-warning" href="{% url 'home:posts' %} " style ="width :120px;margin: 0px 80px " >Check your post</a>
-            <input class ="btn btn-danger" type="submit" value="Submit" style ="width :120px;margin: 0px 80px " >                    
-        </div>                
-    </form>
+    </div>
 </div>
-
-
 
 {% endblock %}

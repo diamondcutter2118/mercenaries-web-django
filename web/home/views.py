@@ -1,51 +1,67 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django import forms
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.forms import TextInput,ModelForm,NumberInput,EmailInput,PasswordInput, inlineformset_factory
-from pkg_resources import Requirement
-from .models import User , Offer, Game
+from django.contrib.auth.decorators import login_required
+from .models import User , Offer, Game,Customer
 from django.contrib.auth import authenticate, login , logout
-from .forms import OfferForm,LoginForm,SignupForm
-from django.forms import inlineformset_factory
+from .forms import OfferForm,LoginForm,CreateUserForm,CustomerForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from .decorators import unauthenticated_user,allowed_users
+from django.contrib.auth.models import Group
 # Create your views here.
+
 app_name = "home"
-    
-def login_view (request):
-    if request.method == "POST":
-        
-        username = request.POST["username"]
-        password = request.POST["password"]
 
-        user = authenticate(request, username=username, password=password)
-
-        if user:
-            login(request, user)
-            return HttpResponseRedirect(reverse("home:loged_in_index"))
-        
-        else:
-            return render(request, "home/login.html", {
-                "message": "Invalid Credentials"
-            })
-
-    return render (request, "home/login.html",{
-        "login_form" :LoginForm()
-    })
-
+@unauthenticated_user
 def signup_view(request):
-    if request.method == "POST":
-        first_name = request.POST["first_name"]
-        last_name = request.POST["last_name"]
-        email = request.POST["email"]
-        password = request.POST["password"]
+        form = CreateUserForm()
 
-        signup_data = User(first_name = first_name,last_name = last_name, email = email, password =password)
-        signup_data.save()
+        if request.method == "POST":
+            form = CreateUserForm(request.POST)
+            if form.is_valid():
+                user = form.save()
+                username =form.cleaned_data.get('username')
+                
+                group = Group.objects.get(name='customer')
+                user.groups.add(group)
+                User.objects.create(
+                    user = user,
+                )
+                
+                messages.success(request,"Account was created for " + user)
+                
+                return redirect('home: login')
 
-    return render (request, "home/signup.html",{
-         "signup_form" : SignupForm()
-    })
+        return render (request, "home/signup.html",{
+            "form" : CreateUserForm()
+        }) 
+
+@unauthenticated_user
+def login_view (request):
+        if request.method == "POST":
+            
+            username = request.POST["username"]
+            password = request.POST["password"]
+
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None :
+                login(request, user)
+                return HttpResponseRedirect(reverse("home:landing"))
+            
+            else:
+                return render(request, "home/login.html", {
+                    "message": "Invalid Credentials"
+                })
+
+        return render (request, "home/login.html",{
+            "login_form" :LoginForm()
+        })
+
 
 def logout_view(request):
     logout(request)
@@ -73,6 +89,8 @@ def posts(request):
         "description": request.session["description"],
     }) 
 
+@login_required(login_url= "home:login")
+@allowed_users(allowed_roles=['customer'])
 def posting(request):  
     form = OfferForm()
     if request.method =="POST":
@@ -83,21 +101,34 @@ def posting(request):
     return render (request, "home/posting.html",{
         "form":form
     })
-    
+
+@allowed_users(allowed_roles=['customer'])
+def userpage(request):
+    customer = request.user.customer
+    form = CustomerForm(instance =customer)
+    context ={'form':form}
+    return render (request, "home/userpage.html",context)
+
 def newsfeed (request):
-    return render (request, "home/newsfeed.html")
+    return render (request, "home/newsfeed.html",{
+        
+    })
 
 def games (request):
     return render (request, "home/games.html")
 
+@login_required(login_url= "home:login")
+@allowed_users(allowed_roles=['customer'])
 def chat (request):
     return render (request, "home/chat.html")
 
 def index(request):
      return render (request, "home/index.html")
 
-def loged_in_index(request):
-     return render (request, "home/loged_in_index.html")
+@login_required(login_url= "home:login")
+@allowed_users(allowed_roles=['customer'])
+def landing(request):
+     return render (request, "home/landing.html")
 
 
 
